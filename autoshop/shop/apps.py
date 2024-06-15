@@ -6,4 +6,5 @@ class ShopConfig(AppConfig):
     name = 'shop'
 
     def ready(self):
-        import shop.signals
+        import shop.signals  # Этот импорт необходим для регистрации сигналов
+

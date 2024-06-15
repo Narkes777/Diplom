@@ -4,10 +4,8 @@ from django.dispatch import receiver
 from .models import Customer
 
 @receiver(post_save, sender=User)
-def create_customer(sender, instance, created, **kwargs):
+def create_or_update_customer(sender, instance, created, **kwargs):
     if created:
         Customer.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_customer(sender, instance, **kwargs):
-    instance.customer.save()
+    else:
+        instance.customer.save()
