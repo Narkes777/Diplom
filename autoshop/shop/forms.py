@@ -14,12 +14,12 @@ class ShippingAddressForm(forms.ModelForm):
 class AddProductToOrderForm(forms.ModelForm):
     class Meta:
         model = OrderItem
-        fields = ['product', 'quantity']
+        fields = ['quantity']
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'stock']
+        fields = '__all__'
         widgets = {
             'description': forms.Textarea(attrs={'rows': 4}),  # Добавление виджета для многострочного поля
             'price': forms.NumberInput(attrs={'step': '0.01'}),  # Добавление виджета для числового поля с шагом

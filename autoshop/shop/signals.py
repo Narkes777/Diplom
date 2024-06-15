@@ -7,5 +7,3 @@ from .models import Customer
 def create_or_update_customer(sender, instance, created, **kwargs):
     if created:
         Customer.objects.create(user=instance)
-    else:
-        instance.customer.save()

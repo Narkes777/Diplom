@@ -21,7 +21,9 @@ class ProductListView(ListView):
 # Представление для добавления товара в заказ
 def add_to_order(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    order, created = Order.objects.get_or_create(customer=request.user.customer, complete=False)
+    order = Order.objects.filter(customer=request.user.customer, complete=False).first()
+    if not order:
+        order = Order.objects.create(customer=request.user.customer)
     form = AddProductToOrderForm(request.POST)
 
     if form.is_valid():

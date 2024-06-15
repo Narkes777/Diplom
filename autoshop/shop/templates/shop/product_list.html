@@ -12,6 +12,7 @@
             <a href="{% url 'shop:product_detail' product.pk %}">{{ product.name }}</a>
             <form method="post" action="{% url 'shop:add_to_order' product.id %}">
                 {% csrf_token %}
+                <input type="hidden" name="product" value="{{ product.id }}">
                 {{ form.as_p }}
                 <button type="submit">Add to Order</button>
             </form>
